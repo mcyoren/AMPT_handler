@@ -11,9 +11,9 @@ bool EqArr(int xx0, int xx1, int xx2, int xx3, int yy[4]);
 char gg_names[10][200] ={"eta_spectrum_pbsc_hist_FG11","eta_spectrum_pbsc_hist_BG11","sigma_cut_eta_spectrum_pbsc_hist_FG11","sigma_cut_eta_spectrum_pbsc_hist_BG11",
 "r_3_eta_spectrum_pbsc_hist_FG11","r_3_eta_spectrum_pbsc_hist_BG11","r_3_cnt_eta_spectrum_pbsc_hist_FG11","r_3_cnt_eta_spectrum_pbsc_hist_BG11",
 "emcid_eta_spectrum_pbsc_hist_FG11","emcid_eta_spectrum_pbsc_hist_BG11"}; 
-double mass = 0.547;
-double Gamma = 0.0311;
-void PHI_FIT (int hh, int lb, int rb, double pt_min, double pt_max, int hist_N = 7, int meth = 0, bool smooth = true){
+double mass = 0.139;
+double Gamma = 0.00991;
+void PI_FIT (int hh, int lb, int rb, double pt_min, double pt_max, int hist_N = 7, int meth = 0, bool smooth = true){
     char filename[200] = "input/HeAu_18968_Artem_newcuts.root";    ///HeAu_19829_Artem_onlyemcid Lambda_AuAu_V1_pm_g.root
     char histname_bg[200], histname_fg[200];
     sprintf(histname_bg,gg_names[2*hh+1]);///"LAM_V2_BG12"eta_prime_spectrum_nopid_cut_BG12;
@@ -22,9 +22,9 @@ void PHI_FIT (int hh, int lb, int rb, double pt_min, double pt_max, int hist_N =
     int Nrp = 1;
     double low_edge_int = 0.7;
     double high_edge_int = 0.99;
-    double fit1_l = 0.4;
-    double fit1_h =  0.9;
-    double dif_coeff = 1.0995;
+    double fit1_l = 0.04;
+    double fit1_h =  0.29;
+    double dif_coeff = 0.995;
     int reb = 10;
     int proj_axis = 0; /// 0 - X ; 1 - Y
     char outputname[200];
@@ -278,9 +278,9 @@ void PHI_FIT (int hh, int lb, int rb, double pt_min, double pt_max, int hist_N =
    cout<<"Total Stats: "<<stat->GetBinContent(2)/1e6<<" *10^6"<<endl;
 
     char integral[200];
-    sprintf(integral,"%.1f/1e6",intgr/stat->GetBinContent(2)*1e6);
+    sprintf(integral,"%.f/1e6",intgr/stat->GetBinContent(2)*1e6);
     DrawLegendTitle(0.23,0.85,0.24,0.86,integral,0.04,22);
-    sprintf(integral,"#pm%.2f%%",100*(1*sqrt( intgr1 )/intgr));
+    sprintf(integral,"#pm%.3f%%",100*(1*sqrt( intgr1 )/intgr));
     DrawLegendTitle(0.23,0.8,0.24,0.81,integral,0.04,22);
 
    c1->Update();
